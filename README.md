@@ -114,7 +114,9 @@ pip install poetry
 git clone https://github.com/aa2149/jobpilot.git
 cd jobpilot
 
+pip install poetry 
 poetry install
+poetry update package
 poetry run patchright install chromium
 
 cp .env.example .env

@@ -51,7 +51,7 @@ class Applicant(BaseModel):
     phone: str | None = None
     location: str | None = None
     linkedin: HttpUrl | None = None
-    https://github.com/aa2149/jobpilot: HttpUrl | None = None
+    github: HttpUrl | None = None
     portfolio: HttpUrl | None = None
     resume_path: str = Field(..., description="Absolute path to a local PDF resume.")
     resume_text: str = Field(..., description="Full text/markdown of the resume, used by the LLM.")

@@ -812,7 +812,7 @@ const DEFAULT_APPLICANT = {
   phone: '',
   location: '',
   linkedin: '',
-  https://github.com/aa2149/jobpilot: '',
+  github: '',
   portfolio: '',
   resume_path: '',
   resume_text: '',
