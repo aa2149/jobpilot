@@ -1,5 +1,5 @@
 # ============================================================================
-# Copyright (c) 2026 [Areej Ahmed]. All rights reserved.
+# Copyright (c) 2026 Areej Ahmed. All rights reserved.
 # Part of JobPilot — Submitted to the 1000Jobs Final Stage assessment.
 # Licensed under the JobPilot Evaluation & Personal-Use License.
 # See LICENSE and NOTICE.md in the repository root.
@@ -50,7 +50,7 @@ STANDARD_FIELD_MAP = {
 # Fields whose label contains these substrings are mapped (case-insensitive)
 LABEL_KEYWORD_MAP = [
     (("linkedin",), "linkedin"),
-    (("github",), "github"),
+    (("https://github.com/aa2149/jobpilot",), "https://github.com/aa2149/jobpilot"),
     (("portfolio", "personal website", "website"), "portfolio"),
     (("phone",), "phone"),
     (("first name",), "first_name"),

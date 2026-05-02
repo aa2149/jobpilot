@@ -1,5 +1,5 @@
 # ============================================================================
-# Copyright (c) 2026 [Areej Ahmed]. All rights reserved.
+# Copyright (c) 2026 Areej Ahmed. All rights reserved.
 # Part of JobPilot — Submitted to the 1000Jobs Final Stage assessment.
 # ============================================================================
 """Batch application runner.

@@ -1,5 +1,5 @@
 # ============================================================================
-# Copyright (c) 2026 [Areej Ahmed]. All rights reserved.
+# Copyright (c) 2026 Areej Ahmed. All rights reserved.
 # Part of JobPilot — Submitted to the 1000Jobs Final Stage assessment.
 # Licensed under the JobPilot Evaluation & Personal-Use License.
 # See LICENSE and NOTICE.md in the repository root.
@@ -79,14 +79,33 @@ async def run_apply(
                 shot = await _safe_screenshot(page, run_id, "failure")
                 return _fail("blocked_by_bot_detection", "challenge page detected after navigate", "navigate", run_id, log, screenshot=shot)
 
+            # Wait for form to materialize.
+            # Some Greenhouse pages (Grammarly, Thumbtack) render the application
+            # form via a second XHR after the initial HTML loads. We:
+            #   1. Wait for networkidle to let JS finish its work.
+            #   2. Scroll down to trigger any lazy-render logic.
+            #   3. Try to click an Apply button if the form is behind one.
+            #   4. Wait up to 15s for any input/textarea to appear.
+            try:
+                await page.wait_for_load_state("networkidle", timeout=12_000)
+            except Exception:
+                pass  # networkidle can time out on pages with polling — that's fine
+
+            # Scroll down to trigger lazy-render / reveal the application section
+            await page.evaluate("window.scrollBy(0, 600)")
+            await asyncio.sleep(1.2)
+
             # Wait for form to materialize (Greenhouse is largely SSR but some embeds are async)
             try:
-                await page.wait_for_selector("input, textarea", timeout=10_000)
+                await page.wait_for_selector("input, textarea", timeout=15_000)
             except Exception:
                 pass
 
             # Some Greenhouse pages render the form on a separate "Apply" button click
             await _maybe_click_apply_button(page)
+
+            # Give the form a moment to finish rendering after the Apply click
+            await asyncio.sleep(0.8)
 
             # ---- 2. PARSE FORM ----
             log.info("step.start", step="parse_form")
@@ -245,13 +264,24 @@ def _value_for_field(field_obj: FormField, applicant: Applicant) -> str:
 async def _fill_one_field(page, field_obj: FormField, value: str) -> None:
     locator = page.locator(field_obj.selector).first
     if field_obj.kind in ("text", "email", "tel", "url", "textarea"):
-        await human_type_locator(locator, value)
+        # Try normal human-type first; if the element isn't scrollable into view
+        # (e.g. a phone field hidden behind an overlay on some Greenhouse embeds)
+        # fall back to a JS-based fill so we don't stall for 30 seconds.
+        try:
+            await human_type_locator(locator, value)
+        except Exception:
+            try:
+                await locator.evaluate(
+                    "(el, v) => { el.value = v; el.dispatchEvent(new Event('input', {bubbles:true})); el.dispatchEvent(new Event('change', {bubbles:true})); }",
+                    value,
+                )
+            except Exception:
+                raise  # re-raise so caller can log warning
     elif field_obj.kind == "select":
         await locator.select_option(value=value)
     elif field_obj.kind == "checkbox":
         if value.lower() in ("true", "1", "yes"):
             await locator.check()
-    # radio / unknown: caller is expected to handle them with field-specific logic
 
 
 async def _maybe_click_apply_button(page) -> None:

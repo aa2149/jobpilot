@@ -1,5 +1,5 @@
 /* ============================================================================
- * Copyright (c) 2026 [Areej Ahmed]. All rights reserved.
+ * Copyright (c) 2026 Areej Ahmed. All rights reserved.
  * Part of JobPilot — Submitted to the 1000Jobs Final Stage assessment.
  * Licensed under the JobPilot Evaluation & Personal-Use License.
  * See LICENSE and NOTICE.md in the repository root.
@@ -135,7 +135,7 @@ function StepFrame({ children, stepIdx, totalSteps, onBack }) {
           <div className="flex items-center gap-3">
             <div className="font-display text-xl tracking-tight">JobPilot</div>
             <div className="text-[10px] font-mono text-ink-400 tracking-[0.2em] uppercase">
-              © 2026 [Areej Ahmed] · 1000Jobs Final Stage
+              © 2026 Areej Ahmed · 1000Jobs Final Stage
             </div>
           </div>
           {onBack && stepIdx > 0 && (
@@ -160,7 +160,7 @@ function StepFrame({ children, stepIdx, totalSteps, onBack }) {
 
       <footer className="px-8 lg:px-16 py-6 border-t border-ink-200 max-w-4xl mx-auto w-full">
         <div className="text-[10px] font-mono text-ink-400 tracking-wider uppercase">
-          © 2026 [Areej Ahmed] · All rights reserved · See LICENSE & NOTICE.md
+          © 2026 Areej Ahmed · All rights reserved · See LICENSE & NOTICE.md
         </div>
       </footer>
     </div>
@@ -812,7 +812,7 @@ const DEFAULT_APPLICANT = {
   phone: '',
   location: '',
   linkedin: '',
-  github: '',
+  https://github.com/aa2149/jobpilot: '',
   portfolio: '',
   resume_path: '',
   resume_text: '',

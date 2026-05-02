@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 PY_HEADER = '''# ============================================================================
-# Copyright (c) 2026 [Areej Ahmed]. All rights reserved.
+# Copyright (c) 2026 Areej Ahmed. All rights reserved.
 # Part of JobPilot — Submitted to the 1000Jobs Final Stage assessment.
 # Licensed under the JobPilot Evaluation & Personal-Use License.
 # See LICENSE and NOTICE.md in the repository root.
@@ -17,7 +17,7 @@ PY_HEADER = '''# ===============================================================
 '''
 
 JS_HEADER = '''/* ============================================================================
- * Copyright (c) 2026 [Areej Ahmed]. All rights reserved.
+ * Copyright (c) 2026 Areej Ahmed. All rights reserved.
  * Part of JobPilot — Submitted to the 1000Jobs Final Stage assessment.
  * Licensed under the JobPilot Evaluation & Personal-Use License.
  * See LICENSE and NOTICE.md in the repository root.

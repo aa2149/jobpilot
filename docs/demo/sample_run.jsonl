@@ -11,7 +11,7 @@
 {"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:22:28.218Z","step":"field.filled","level":"info","label":"Phone","kind":"tel","value_length":13}
 {"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:22:31.554Z","step":"field.filled","level":"info","label":"Location (city)","kind":"text","value_length":10}
 {"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:22:35.001Z","step":"field.filled","level":"info","label":"LinkedIn profile","kind":"url","value_length":40}
-{"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:22:37.811Z","step":"field.filled","level":"info","label":"GitHub URL","kind":"url","value_length":31}
+{"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:22:37.811Z","step":"field.filled","level":"info","label":"https://github.com/aa2149/jobpilot URL","kind":"url","value_length":31}
 {"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:22:40.620Z","step":"field.filled","level":"info","label":"Portfolio / personal website","kind":"url","value_length":24}
 {"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:22:43.118Z","step":"step.start","level":"info","step_name":"upload_resume"}
 {"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:22:45.722Z","step":"resume.uploaded","level":"info","path":"/Users/aisha/resume.pdf","filename":"Aisha_Khan_Senior_PM.pdf","size_bytes":287144}
@@ -23,7 +23,7 @@
 {"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:23:52.221Z","step":"llm.call.complete","level":"info","question_index":1,"prompt_tokens":1842,"completion_tokens":402,"duration_ms":4197,"answer_chars":1996}
 {"run_id":"run_2026-05-02T14-24-58Z_a1b2","ts":"2026-05-02T14:24:58.117Z","step":"question.answered","level":"info","index":1,"chars":1996,"typing_duration_ms":65896}
 {"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:25:02.880Z","step":"step.start","level":"info","step_name":"validate_form"}
-{"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:25:04.110Z","step":"validate.complete","level":"info","required_missing":[],"unfilled_optional":["GitHub URL is filled","website_url_2 is empty (honeypot — correct)"]}
+{"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:25:04.110Z","step":"validate.complete","level":"info","required_missing":[],"unfilled_optional":["https://github.com/aa2149/jobpilot URL is filled","website_url_2 is empty (honeypot — correct)"]}
 {"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:25:04.111Z","step":"step.start","level":"info","step_name":"halt_or_submit"}
 {"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:25:04.622Z","step":"submit.clicking","level":"info"}
 {"run_id":"run_2026-05-02T14-22-08Z_a1b2","ts":"2026-05-02T14:25:08.844Z","step":"submit.confirmed","level":"info","confirmation_text":"Thank you for applying!","post_submit_url":"https://job-boards.greenhouse.io/grammarly/jobs/7767680/applications/thanks"}

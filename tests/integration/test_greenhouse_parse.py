@@ -1,5 +1,5 @@
 # ============================================================================
-# Copyright (c) 2026 [Areej Ahmed]. All rights reserved.
+# Copyright (c) 2026 Areej Ahmed. All rights reserved.
 # Part of JobPilot — Submitted to the 1000Jobs Final Stage assessment.
 # ============================================================================
 """Integration test: parse a real-world-modelled Greenhouse application fixture
@@ -54,7 +54,7 @@ GREENHOUSE_FIELD_MAP = {
 
 LABEL_KEYWORDS = [
     (("linkedin",), "linkedin"),
-    (("github",), "github"),
+    (("https://github.com/aa2149/jobpilot",), "https://github.com/aa2149/jobpilot"),
     (("portfolio", "personal website"), "portfolio"),
 ]
 
@@ -213,13 +213,13 @@ class TestRealisticGreenhouseParse:
         assert by_name["job_application[location]"]["payload_key"] == "location"
 
     def test_url_fields_mapped_via_label(self, soup: BeautifulSoup):
-        """LinkedIn / GitHub / Portfolio share the urls_attributes name pattern,
+        """LinkedIn / https://github.com/aa2149/jobpilot / Portfolio share the urls_attributes name pattern,
         so they must be distinguished by their LABEL text."""
         schema = parse_static(soup)
         url_fields = [f for f in schema["fields"] if "urls_attributes" in (f["name"] or "")]
         keys = {f["payload_key"] for f in url_fields}
         assert "linkedin" in keys
-        assert "github" in keys
+        assert "https://github.com/aa2149/jobpilot" in keys
         assert "portfolio" in keys
 
     def test_resume_file_input_detected(self, soup: BeautifulSoup):
@@ -288,7 +288,7 @@ class TestRealisticGreenhouseParse:
             "last_name": "Khan",
             "email": "aisha@example.com",
             "phone": "+971501234567",
-            # NO location, NO github, NO portfolio
+            # NO location, NO https://github.com/aa2149/jobpilot, NO portfolio
             "linkedin": "https://linkedin.com/in/aisha",
         }
 
@@ -306,6 +306,6 @@ class TestRealisticGreenhouseParse:
         assert "linkedin" in filled_keys
 
         # Should NOT fill what we don't have (Brief Requirement 6c: don't auto-fill blank fields)
-        assert "github" not in filled_keys
+        assert "https://github.com/aa2149/jobpilot" not in filled_keys
         assert "portfolio" not in filled_keys
         assert "location" not in filled_keys

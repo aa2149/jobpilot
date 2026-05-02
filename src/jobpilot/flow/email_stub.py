@@ -1,5 +1,5 @@
 # ============================================================================
-# Copyright (c) 2026 [Areej Ahmed]. All rights reserved.
+# Copyright (c) 2026 Areej Ahmed. All rights reserved.
 # Part of JobPilot — Submitted to the 1000Jobs Final Stage assessment.
 # ============================================================================
 """Email delivery — stubbed in v1.
@@ -152,7 +152,7 @@ def _format_results_html(applicant_name: str, batch_summary: dict, results: list
       Sent by JobPilot · {datetime.now(timezone.utc).strftime('%Y-%m-%d')} · Batch {batch_summary.get('batch_id', '')}
     </p>
     <p style="font-size: 11px; color: #B8B5A6; margin: 4px 0 0 0; font-style: italic;">
-      © 2026 [Areej Ahmed]. All rights reserved.
+      © 2026 Areej Ahmed. All rights reserved.
     </p>
   </div>
 </body>
@@ -183,7 +183,7 @@ def _format_results_text(applicant_name: str, batch_summary: dict, results: list
         "  · Round 1 silence after 7 days → polite recruiter nudge.",
         "",
         "Sent by JobPilot · " + datetime.now(timezone.utc).strftime("%Y-%m-%d"),
-        "© 2026 [Areej Ahmed]. All rights reserved.",
+        "© 2026 Areej Ahmed. All rights reserved.",
     ]
     return "\n".join(lines)
 

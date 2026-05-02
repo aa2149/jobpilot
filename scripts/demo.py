@@ -88,7 +88,23 @@ async def main(args: argparse.Namespace) -> int:
 
     applicant = Applicant(**applicant_data)
 
-    # Pick jobs
+    # ── Pre-flight: catch the resume path problem BEFORE any browser opens ──
+    resume = Path(applicant.resume_path)
+    if not resume.exists() or str(resume) == "/PUT/AN/ABSOLUTE/PATH/HERE/resume.pdf":
+        print()
+        print("━" * 72)
+        print("  ✗  MISSING RESUME — fix this before running the demo")
+        print("━" * 72)
+        print()
+        print("  Open  samples/demo_applicant.json  and replace:")
+        print()
+        print('    "resume_path": "/PUT/AN/ABSOLUTE/PATH/HERE/resume.pdf"')
+        print()
+        print("  with the absolute path to a real PDF on your machine, e.g.:")
+        print()
+        print('    "resume_path": "/Users/areej/Documents/resume.pdf"')
+        print()
+        return 2
     jobs = DEMO_JOBS[: args.jobs]
 
     # Configure options
