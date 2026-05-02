@@ -235,7 +235,7 @@ Self-explanatory. Used by the frontend.
 | The Deep Specialist | Senior ICs who want technical depth and respect. |
 | The Remote-First Lifer | Async-friendly, distributed, no RTO whiplash. |
 
-Full feature definitions in `src/jobpilot/fit/archetypes.py`. The taxonomy is original to this submission — see [NOTICE.md](NOTICE.md).
+Full feature definitions in `src/jobpilot/fit/archetypes.py`. The taxonomy is original to this submission.
 
 ---
 
@@ -303,13 +303,13 @@ In short:
 - **Commercial use, derivative works, or incorporation into any product** requires written permission.
 - The eight-archetype taxonomy, the work-mode routing, the prompt templates, the design language, and all other elements listed in [NOTICE.md](NOTICE.md) are reserved.
 
-If you want to discuss licensing, contact [YOUR EMAIL].
+If you want to discuss licensing, contact areejahmedicty8@gmail.com.
 
 ---
 
 ## Acknowledgments
 
-This work takes deliberate inspiration from **[career-ops by Santiago Fernandez](https://github.com/santifer/career-ops)**, a brilliant open-source job-search system. We adopted Santiago's "filter, don't spray" thesis and his STAR + R format for the Story Bank. Everything else — the archetype taxonomy, multi-platform routing, UAE focus, web frontend, tracker workbook — is original work. Full provenance in [NOTICE.md](NOTICE.md).
+This work takes deliberate inspiration from **[career-ops by Santiago Fernandez](https://github.com/santifer/career-ops)**, a brilliant open-source job-search system. We adopted Santiago's "filter, don't spray" thesis and his STAR + R format for the Story Bank. Everything else — the archetype taxonomy, multi-platform routing, UAE focus, web frontend, tracker workbook — is original work. 
 
 ---
 
