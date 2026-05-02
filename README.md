@@ -103,11 +103,12 @@ Module map (under `src/jobpilot/`):
 - [Poetry](https://python-poetry.org/)
 - A Gemini API key
 
+pip install poetry 
 
 ### Install
 
 ```bash
-git clone https://github.com/<you>/jobpilot.git
+git clone https://github.com/aa2149/jobpilot.git
 cd jobpilot
 
 poetry install
