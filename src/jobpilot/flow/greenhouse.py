@@ -149,6 +149,9 @@ async def run_apply(
             resume_uploaded = False
             if schema.file_input_selector:
                 log.info("step.start", step="upload_resume")
+            if not applicant.resume_path:
+                log.warning("resume.skipped", reason="no resume_path provided")
+                # continue without uploading
                 try:
                     await upload_resume(page, schema.file_input_selector, applicant.resume_path)
                     resume_uploaded = True

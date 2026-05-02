@@ -118,6 +118,7 @@ pip install poetry
 poetry install
 poetry update package
 poetry run patchright install chromium
+poetry add openpyxl && echo "openpyxl installed"
 
 cp .env.example .env
 # Open .env, paste your GEMINI_API_KEY 

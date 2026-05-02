@@ -50,7 +50,7 @@ STANDARD_FIELD_MAP = {
 # Fields whose label contains these substrings are mapped (case-insensitive)
 LABEL_KEYWORD_MAP = [
     (("linkedin",), "linkedin"),
-    (("https://github.com/aa2149/jobpilot",), "https://github.com/aa2149/jobpilot"),
+    (("github",), "github"),
     (("portfolio", "personal website", "website"), "portfolio"),
     (("phone",), "phone"),
     (("first name",), "first_name"),

@@ -54,7 +54,7 @@ GREENHOUSE_FIELD_MAP = {
 
 LABEL_KEYWORDS = [
     (("linkedin",), "linkedin"),
-    (("https://github.com/aa2149/jobpilot",), "https://github.com/aa2149/jobpilot"),
+    (("github",), "github"),
     (("portfolio", "personal website"), "portfolio"),
 ]
 
@@ -219,7 +219,7 @@ class TestRealisticGreenhouseParse:
         url_fields = [f for f in schema["fields"] if "urls_attributes" in (f["name"] or "")]
         keys = {f["payload_key"] for f in url_fields}
         assert "linkedin" in keys
-        assert "https://github.com/aa2149/jobpilot" in keys
+        assert "github" in keys
         assert "portfolio" in keys
 
     def test_resume_file_input_detected(self, soup: BeautifulSoup):
@@ -306,6 +306,6 @@ class TestRealisticGreenhouseParse:
         assert "linkedin" in filled_keys
 
         # Should NOT fill what we don't have (Brief Requirement 6c: don't auto-fill blank fields)
-        assert "https://github.com/aa2149/jobpilot" not in filled_keys
+        assert "github" not in filled_keys
         assert "portfolio" not in filled_keys
         assert "location" not in filled_keys
