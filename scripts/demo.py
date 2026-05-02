@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ============================================================================
-# Copyright (c) 2026 [YOUR NAME]. All rights reserved.
+# Copyright (c) 2026 Areej Ahmed. All rights reserved.
 # Part of JobPilot — Submitted to the 1000Jobs Final Stage assessment.
 # ============================================================================
 """End-to-end demo runner.

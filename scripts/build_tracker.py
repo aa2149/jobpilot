@@ -1,5 +1,5 @@
 # ============================================================================
-# Copyright (c) 2026 [YOUR NAME]. All rights reserved.
+# Copyright (c) 2026 [Areej Ahmed]. All rights reserved.
 # Part of JobPilot — Submitted to the 1000Jobs Final Stage assessment.
 # Licensed under the JobPilot Evaluation & Personal-Use License.
 # See LICENSE and NOTICE.md in the repository root.
@@ -114,7 +114,7 @@ def build_tracker_sheet(wb: Workbook):
     ws.title = "Tracker"
     _add_title(ws,
                "JobPilot — Application Tracker",
-               "© 2026 [YOUR NAME] · All rights reserved · Submitted to 1000Jobs Final Stage for evaluation only · See LICENSE")
+               "© 2026 [Areej Ahmed] · All rights reserved · Submitted to 1000Jobs Final Stage for evaluation only · See LICENSE")
 
     headers = [
         "ID", "Date Saved", "Date Applied", "Company", "Role", "Work Mode",
@@ -413,7 +413,7 @@ def build_dashboard_sheet(wb: Workbook):
     ws = wb.create_sheet("Dashboard", 0)  # insert at position 0 = first
     _add_title(ws,
                "JobPilot — Dashboard",
-               "© 2026 [YOUR NAME] · All rights reserved · 1000Jobs Final Stage submission")
+               "© 2026 [Areej Ahmed] · All rights reserved · 1000Jobs Final Stage submission")
 
     # Title row spans columns
     for col_letter in ("A", "B", "C", "D"):
@@ -584,16 +584,16 @@ def build(output_path: str) -> None:
     wb = Workbook()
 
     # Document properties — these show up in File → Properties / xlsx metadata
-    wb.properties.creator = "[YOUR NAME]"
+    wb.properties.creator = "[Areej Ahmed]"
     wb.properties.title = "JobPilot — Application Tracker"
     wb.properties.subject = "1000Jobs Final Stage submission"
     wb.properties.description = (
-        "© 2026 [YOUR NAME]. All rights reserved. Original work submitted to "
+        "© 2026 [Areej Ahmed]. All rights reserved. Original work submitted to "
         "the 1000Jobs Final Stage assessment for evaluation only. "
         "See LICENSE and NOTICE.md in the source repository."
     )
     wb.properties.keywords = "JobPilot, application tracker, 1000Jobs, copyright reserved"
-    wb.properties.lastModifiedBy = "[YOUR NAME]"
+    wb.properties.lastModifiedBy = "[Areej Ahmed]"
 
     build_tracker_sheet(wb)             # this is the active sheet (Sheet1 → Tracker)
     build_dashboard_sheet(wb)           # inserted at index 0

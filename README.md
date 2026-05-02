@@ -4,7 +4,7 @@
 
 > Original work by **Areej Ahmed** · submitted to the **1000Jobs Final Stage assessment** for evaluation only.
 > © 2026 Areej Ahmed. All rights reserved. Source-available, **not** open source.
-> See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md).
+> See [LICENSE](LICENSE).
 
 ![Hero](docs/screenshot_hero.png)
 
@@ -100,10 +100,13 @@ Module map (under `src/jobpilot/`):
 ### Prerequisites
 
 - Python 3.11+
-- [Poetry](https://python-poetry.org/)
-- A Gemini API key
+pip install python3 
 
+- [Poetry](https://python-poetry.org/)
 pip install poetry 
+
+- A Gemini API key
+# Get one at: https://aistudio.google.com/apikey
 
 ### Install
 
@@ -115,7 +118,7 @@ poetry install
 poetry run patchright install chromium
 
 cp .env.example .env
-# Open .env, paste your ANTHROPIC_API_KEY (or OPENAI_API_KEY)
+# Open .env, paste your GEMINI_API_KEY 
 
 poetry run uvicorn jobpilot.api.server:app --reload --port 8000
 ```
