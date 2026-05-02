@@ -1,0 +1,24 @@
+{
+  "job_url": "https://job-boards.greenhouse.io/grammarly/jobs/7767680",
+  "applicant": {
+    "first_name": "Aisha",
+    "last_name": "Khan",
+    "email": "aisha.khan@example.com",
+    "phone": "+971501234567",
+    "location": "Dubai, UAE",
+    "linkedin": "https://linkedin.com/in/aisha-khan",
+    "github": "https://github.com/aisha-khan",
+    "portfolio": "https://aishakhan.dev",
+    "resume_path": "/absolute/path/to/your/resume.pdf",
+    "resume_text": "AISHA KHAN\nDubai, UAE\n+971 50 123 4567 • aisha.khan@example.com\nLinkedIn: linkedin.com/in/aisha-khan\nGitHub: github.com/aisha-khan\nPortfolio: aishakhan.dev\n\n---\n\nPROFESSIONAL SUMMARY\n\nResults-driven software engineer with 3+ years of experience building scalable web applications and user-focused digital products. Strong background in full-stack development, performance optimization, and clean system design. Passionate about AI-powered tools, language technologies, and creating intuitive user experiences.\n\n---\n\nEXPERIENCE\n\nSoftware Engineer\nTech Solutions LLC — Dubai, UAE\nJan 2023 – Present\n\n- Developed and maintained scalable web applications using React, Node.js, and REST APIs\n- Improved application performance by 30% through code optimization and efficient data handling\n- Collaborated with cross-functional teams (design, product, QA) to deliver high-quality features\n- Implemented authentication systems and secure API integrations\n- Wrote unit and integration tests, increasing code reliability and reducing bugs by 25%\n\nJunior Software Developer\nDigital Innovations — Dubai, UAE\nJun 2021 – Dec 2022\n\n- Built responsive front-end interfaces using React and modern JavaScript (ES6+)\n- Assisted in backend development using Node.js and MongoDB\n- Participated in agile sprints, contributing to feature planning and delivery\n- Fixed bugs and improved UI/UX consistency across applications\n\n---\n\nPROJECTS\n\nAI Writing Assistant (Personal Project)\n\n- Built a writing enhancement tool using OpenAI APIs\n- Implemented grammar suggestions, tone detection, and readability scoring\n- Designed a clean UI for real-time feedback\n\nTask Management Web App\n\n- Full-stack application using React, Node.js, and MongoDB\n- Features include authentication, task tracking, and real-time updates\n- Deployed using Docker and cloud services\n\n---\n\nEDUCATION\n\nBachelor of Science in Computer Science\nUniversity of Dubai\n2017 – 2021\n\n---\n\nSKILLS\n\nLanguages: JavaScript, TypeScript, Python\nFrontend: React, HTML, CSS, Tailwind\nBackend: Node.js, Express\nDatabases: MongoDB, PostgreSQL\nTools: Git, Docker, AWS, CI/CD\nConcepts: REST APIs, system design, testing, performance optimization\n\n---\n\nADDITIONAL INFORMATION\n\n- Work Authorization: Authorized to work in UAE; open to international opportunities\n- Pronouns: she/her\n- Interests: AI, language technology, productivity tools",
+    "work_auth": "Authorized to work in UAE; happy to discuss US/EU sponsorship",
+    "preferred_pronouns": "she/her"
+  },
+  "options": {
+    "auto_submit": true,
+    "headless": false,
+    "llm_model": "gemini-2.0-flash",
+    "min_match_score": 0.0,
+    "screenshot_on_failure": true
+  }
+}

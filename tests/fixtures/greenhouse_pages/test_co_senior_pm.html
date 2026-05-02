@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--
+  Faithful fixture of a Greenhouse application form.
+  Modelled after the real DOM structure of job-boards.greenhouse.io as of 2026.
+  Used by the integration test to verify the parser, honeypot detector,
+  and humanizer work end-to-end without hitting a live ATS.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Senior Product Manager - Test Co</title>
+</head>
+<body>
+  <main id="content">
+    <h1>Senior Product Manager</h1>
+    <h2>Test Co · Remote · United States</h2>
+    <div class="job__description">
+      <p>About Test Co: We're building tools for product managers to ship faster.</p>
+      <p>You will: own the roadmap for our core platform; partner with engineering and design; talk to customers weekly; ship outcomes, not features.</p>
+      <p>You bring: 5+ years of PM experience, including at least 2 years on a B2B SaaS product. Strong written communication. Comfort with data.</p>
+      <p>We offer: 18 weeks of paid parental leave, 4 weeks of vacation, comprehensive healthcare, $2,000/year learning budget.</p>
+    </div>
+
+    <form id="application_form" action="/applications" method="POST" enctype="multipart/form-data">
+
+      <!-- Standard fields -->
+      <fieldset>
+        <legend>Personal Information</legend>
+
+        <label for="first_name_input">First name <span aria-hidden="true">*</span></label>
+        <input id="first_name_input" type="text"
+               name="job_application[first_name]"
+               aria-required="true" required>
+
+        <label for="last_name_input">Last name <span aria-hidden="true">*</span></label>
+        <input id="last_name_input" type="text"
+               name="job_application[last_name]"
+               aria-required="true" required>
+
+        <label for="email_input">Email <span aria-hidden="true">*</span></label>
+        <input id="email_input" type="email"
+               name="job_application[email]"
+               aria-required="true" required>
+
+        <label for="phone_input">Phone</label>
+        <input id="phone_input" type="tel"
+               name="job_application[phone]">
+
+        <label for="location_input">Location (city)</label>
+        <input id="location_input" type="text"
+               name="job_application[location]">
+      </fieldset>
+
+      <!-- Resume upload -->
+      <fieldset>
+        <legend>Resume / CV</legend>
+        <label for="resume_input">Attach resume <span aria-hidden="true">*</span></label>
+        <input id="resume_input" type="file"
+               name="job_application[resume]"
+               accept=".pdf,.doc,.docx,.txt"
+               aria-required="true" required>
+      </fieldset>
+
+      <!-- URL fields -->
+      <fieldset>
+        <legend>Online Presence</legend>
+
+        <label for="linkedin_input">LinkedIn profile</label>
+        <input id="linkedin_input" type="url"
+               name="job_application[urls_attributes][0][value]">
+
+        <label for="github_input">GitHub URL</label>
+        <input id="github_input" type="url"
+               name="job_application[urls_attributes][1][value]">
+
+        <label for="portfolio_input">Portfolio / personal website</label>
+        <input id="portfolio_input" type="url"
+               name="job_application[urls_attributes][2][value]">
+      </fieldset>
+
+      <!-- HONEYPOT — hidden from real users, bots fill it -->
+      <fieldset style="position: absolute; left: -10000px; top: -10000px; width: 0; height: 0; overflow: hidden;">
+        <label for="website_url_2">Website URL (do not fill)</label>
+        <input id="website_url_2" type="url"
+               name="job_application[website_url_2]"
+               tabindex="-1"
+               autocomplete="off">
+      </fieldset>
+
+      <!-- Open-ended screening questions -->
+      <fieldset>
+        <legend>Additional Questions</legend>
+
+        <label for="q1">Why do you want to work at Test Co?<span aria-hidden="true"> *</span></label>
+        <textarea id="q1"
+                  name="job_application[answers_attributes][0][text_value]"
+                  maxlength="2000"
+                  aria-required="true"
+                  required></textarea>
+
+        <label for="q2">Tell us about a time you solved a hard product problem.<span aria-hidden="true"> *</span></label>
+        <textarea id="q2"
+                  name="job_application[answers_attributes][1][text_value]"
+                  maxlength="3000"
+                  aria-required="true"
+                  required></textarea>
+
+        <label for="q3">What's your salary expectation? (USD, annual)</label>
+        <input id="q3" type="text"
+               name="job_application[answers_attributes][2][text_value]"
+               maxlength="100">
+      </fieldset>
+
+      <!-- Demographics (optional) -->
+      <fieldset>
+        <legend>Voluntary Self-Identification</legend>
+
+        <label for="gender">Gender</label>
+        <select id="gender" name="job_application[answers_attributes][3][text_value]">
+          <option value="">Select an option</option>
+          <option value="Decline to self-identify">Decline to self-identify</option>
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+          <option value="Non-binary">Non-binary</option>
+        </select>
+      </fieldset>
+
+      <button type="submit" id="submit_app">Submit Application</button>
+    </form>
+  </main>
+</body>
+</html>

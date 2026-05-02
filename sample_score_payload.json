@@ -1,0 +1,7 @@
+{
+  "job_url": "https://job-boards.greenhouse.io/grammarly/jobs/7767680",
+  "candidate_archetypes": [
+    { "name": "women_forward", "weight": 0.6 },
+    { "name": "stable_provider", "weight": 0.4 }
+  ]
+}

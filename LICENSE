@@ -1,0 +1,121 @@
+JOBPILOT — EVALUATION & PERSONAL-USE LICENSE
+Version 1.0, dated 2026-05-02
+
+Copyright (c) 2026 Areej Ahmed. All rights reserved.
+
+This software ("the Software") is the original work of Areej Ahmed ("the
+Author"). It was created as a submission to the 1000Jobs (JobPilot) Final
+Stage assessment for Allan and Ziad ("the Assessors").
+
+THIS IS NOT AN OPEN-SOURCE LICENSE. The Software is being made available
+on a source-visible basis solely for the purposes set out below. All
+rights not expressly granted are reserved.
+
+1. PERMITTED USES
+
+You are granted a non-exclusive, non-transferable, revocable, royalty-free
+right to do the following, and only the following:
+
+  (a) READ the source code, design documents, and accompanying materials
+      for the purpose of evaluating the Author's work;
+
+  (b) RUN the Software on your own machine for the purpose of evaluating
+      its behavior;
+
+  (c) USE the Software for personal, non-commercial job-application
+      activities on your own behalf only — that is, applying to jobs as a
+      candidate using your own resume and credentials.
+
+2. PROHIBITED USES
+
+You may NOT, without prior written permission from the Author:
+
+  (a) Copy, adapt, modify, translate, or create derivative works of the
+      Software for any commercial purpose;
+
+  (b) Incorporate the Software, in whole or in part, into any product,
+      service, or platform offered to third parties;
+
+  (c) Use the Software, its design, its architecture, its archetype
+      taxonomy, its platform-routing scheme, its prompt templates, or any
+      other component thereof in any product or service that competes
+      with, or substantially resembles, the Author's intended commercial
+      use of the Software;
+
+  (d) Sublicense, sell, rent, lease, or otherwise transfer rights in the
+      Software to any third party;
+
+  (e) Use the Software to provide automated job-application services to
+      anyone other than yourself;
+
+  (f) Remove or obscure any copyright, attribution, watermark, or other
+      proprietary notice contained in the Software or its documentation;
+
+  (g) Train any machine learning model on the Software for the purpose of
+      reproducing its functionality.
+
+3. RESERVATION OF RIGHTS
+
+The Author reserves all rights, title, and interest in and to the
+Software, including but not limited to:
+
+  - The eight-archetype taxonomy and its definitions;
+  - The work-mode-and-region routing model;
+  - The platform graph and its specific composition;
+  - The prompt templates and prompt construction methodology;
+  - The design document in whole and in its constituent sections;
+  - The visual design language, color palette, and typographic system;
+  - All trade dress and product positioning;
+  - Any future commercial product, service, or company built upon or
+    derived from this Software.
+
+4. ATTRIBUTION
+
+If, with the Author's prior written permission, any portion of the
+Software is used in any context, attribution must be given as follows:
+
+  "Built on JobPilot by Areej Ahmed
+   https://github.com/[YOUR-HANDLE]/jobpilot"
+
+5. NO WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING
+FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+6. TERMINATION
+
+The rights granted under Section 1 terminate automatically and without
+notice if you breach any term of this License. Upon termination, you
+must cease all use of the Software and destroy all copies in your
+possession.
+
+7. GOVERNING LAW
+
+This License is governed by the laws of the United Arab Emirates, without
+regard to conflict-of-laws principles. Any dispute arising under or in
+connection with this License shall be resolved in the courts of the
+Emirate of Dubai.
+
+8. CONTACT
+
+For licensing inquiries, commercial-use requests, or attribution
+permission, contact:
+
+  Areej Ahmed
+  areejahmedicty8@gmail.com
+
+
+---
+
+By accessing, reading, or running the Software you agree to the terms of
+this License. If you do not agree, you must not access, read, or run the
+Software.
+
+This License is dated 2026-05-02 and was authored simultaneously with the
+initial public commit of the repository.
