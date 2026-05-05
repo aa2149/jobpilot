@@ -51,7 +51,7 @@ class Applicant(BaseModel):
     phone: str | None = None
     location: str | None = None
     linkedin: str | None = None
-    github: HttpUrl | None = None
+    github: str | None = None
     portfolio: str | None = None
     resume_path: str = Field(default="", description="Absolute path to a local PDF resume.")
     resume_text: str = Field(default="", description="Full text/markdown of the resume, used by the LLM.")
@@ -112,8 +112,8 @@ class ApplyResponse(BaseModel):
 
 class BatchRequest(BaseModel):
     job_urls: list[HttpUrl]
-    applicant: "Applicant"
-    options: "ApplyOptions" = Field(default_factory=lambda: ApplyOptions())
+    applicant: Applicant
+    options: ApplyOptions = Field(default_factory=ApplyOptions)
     pause_seconds: float = Field(8.0, ge=2.0, le=60.0)
 
 

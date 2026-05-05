@@ -6,17 +6,20 @@
 # ============================================================================
 """FastAPI server. Exposes:
 
-  POST /apply       — drive an application via the right platform adapter
-  POST /score       — score a job against the candidate's archetypes
-  POST /platforms   — discover platforms for a given work-mode + region set
-  GET  /archetypes  — list the eight archetypes (frontend onboarding)
-  GET  /health      — basic liveness
+  POST /apply          — drive an application via the right platform adapter
+  POST /batch          — apply to multiple jobs sequentially
+  POST /score          — score a job against the candidate's archetypes
+  POST /platforms      — discover platforms for a given work-mode + region set
+  POST /parse-resume   — upload a PDF, auto-parse into applicant fields via Gemini
+  GET  /archetypes     — list the eight archetypes (frontend onboarding)
+  GET  /tracker/{id}   — download per-batch tracker xlsx
+  GET  /health         — basic liveness
 """
 from __future__ import annotations
 
 import time
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
@@ -82,6 +85,65 @@ async def list_archetypes() -> dict:
             for a in ARCHETYPES.values()
         ]
     }
+
+
+@app.post("/parse-resume")
+async def parse_resume(file: UploadFile = File(...)):
+    """Upload a PDF resume → extract text → Gemini parses into structured
+    applicant fields. Returns the parsed fields so the frontend can auto-fill.
+
+    Accepts: multipart/form-data with a single file field named 'file'.
+    Returns: JSON with first_name, last_name, email, phone, location,
+             linkedin, github, portfolio, work_auth, resume_text.
+    """
+    if not file.filename:
+        raise HTTPException(status_code=400, detail="No file uploaded")
+
+    # Validate it looks like a PDF
+    if not file.filename.lower().endswith(".pdf"):
+        raise HTTPException(
+            status_code=400,
+            detail=f"Expected a .pdf file, got: {file.filename}. "
+                   "Upload your resume as a PDF."
+        )
+
+    # Read the file
+    try:
+        pdf_bytes = await file.read()
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Could not read file: {e}")
+
+    if len(pdf_bytes) > 10 * 1024 * 1024:  # 10 MB limit
+        raise HTTPException(status_code=400, detail="File too large (max 10 MB)")
+
+    if len(pdf_bytes) < 100:
+        raise HTTPException(status_code=400, detail="File appears empty or corrupt")
+
+    # Save the PDF to a temp path so the agent can later upload it to the form.
+    # We save to logs/ so the user can reference it by absolute path.
+    import tempfile
+    from pathlib import Path
+    uploads_dir = settings.logs_dir / "uploads"
+    uploads_dir.mkdir(exist_ok=True)
+    saved_path = uploads_dir / file.filename
+    saved_path.write_bytes(pdf_bytes)
+
+    # Parse via Gemini
+    from jobpilot.llm.resume_parser import parse_resume_pdf
+    try:
+        parsed = await parse_resume_pdf(pdf_bytes)
+    except ValueError as e:
+        raise HTTPException(status_code=422, detail=str(e))
+    except RuntimeError as e:
+        raise HTTPException(status_code=503, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Resume parsing failed: {e}")
+
+    # Add the saved path so the agent knows where to find the PDF
+    parsed["resume_path"] = str(saved_path.resolve())
+    parsed["original_filename"] = file.filename
+
+    return parsed
 
 
 @app.post("/platforms", response_model=PlatformsResponse)

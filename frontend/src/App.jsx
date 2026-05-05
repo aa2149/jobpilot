@@ -425,20 +425,120 @@ function StepProfile({ archetypes, workModes, regions, onContinue }) {
 // Step 4: Review — collect resume + applicant details
 // =====================================================================
 function StepReview({ applicant, setApplicant, onContinue }) {
+  const [uploading, setUploading] = useState(false)
+  const [uploadError, setUploadError] = useState(null)
+  const [parsed, setParsed] = useState(false) // true once auto-filled
+
   const canAdvance = applicant.first_name && applicant.last_name && applicant.email && applicant.resume_path && applicant.resume_text
+
+  async function handleFileUpload(e) {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    setUploading(true)
+    setUploadError(null)
+
+    try {
+      const data = await api.parseResume(file)
+
+      // Auto-fill all fields from parsed data
+      setApplicant(prev => ({
+        ...prev,
+        first_name: data.first_name || prev.first_name,
+        last_name: data.last_name || prev.last_name,
+        email: data.email || prev.email,
+        phone: data.phone || prev.phone,
+        location: data.location || prev.location,
+        linkedin: data.linkedin || prev.linkedin,
+        github: data.github || prev.github,
+        portfolio: data.portfolio || prev.portfolio,
+        work_auth: data.work_auth || prev.work_auth,
+        resume_text: data.resume_text || prev.resume_text,
+        resume_path: data.resume_path || prev.resume_path,
+      }))
+      setParsed(true)
+    } catch (err) {
+      setUploadError(err.message)
+    } finally {
+      setUploading(false)
+    }
+  }
 
   return (
     <StepWrap>
       <SectionLabel num="04">Your details</SectionLabel>
 
       <h2 className="font-display text-4xl lg:text-5xl leading-tight text-ink-900 mt-3">
-        How should we introduce you?
+        Upload your resume — we'll do the rest.
       </h2>
       <p className="mt-3 text-base text-ink-500 italic font-display">
-        Standard fields go on every form. Resume text is what Gemini uses to write open-ended answers in your voice.
+        Drop a PDF and Gemini auto-fills every field. You can edit anything before continuing.
       </p>
 
-      <div className="mt-10 space-y-5">
+      {/* Resume upload zone */}
+      <div className="mt-8">
+        <label
+          className={`relative flex flex-col items-center justify-center p-10 border-2 border-dashed rounded-lg cursor-pointer transition-all ${
+            uploading
+              ? 'border-accent bg-accent/5'
+              : parsed
+                ? 'border-emerald-ink/30 bg-emerald-50'
+                : 'border-ink-300 hover:border-accent hover:bg-accent/[0.02]'
+          }`}
+        >
+          <input
+            type="file"
+            accept=".pdf"
+            onChange={handleFileUpload}
+            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            disabled={uploading}
+          />
+
+          {uploading ? (
+            <>
+              <Loader2 className="w-8 h-8 text-accent animate-spin mb-3" />
+              <span className="font-display text-lg text-accent">Parsing your resume with Gemini…</span>
+              <span className="text-xs text-ink-500 mt-1 font-mono">Extracting text → identifying fields → auto-filling</span>
+            </>
+          ) : parsed ? (
+            <>
+              <CheckCircle2 className="w-8 h-8 text-emerald-ink mb-3" />
+              <span className="font-display text-lg text-emerald-ink">Resume parsed — fields auto-filled</span>
+              <span className="text-xs text-ink-500 mt-1">
+                {applicant.resume_path ? applicant.resume_path.split('/').pop() : 'resume.pdf'}
+                {' · '}Drop another PDF to re-parse
+              </span>
+            </>
+          ) : (
+            <>
+              <FileText className="w-8 h-8 text-ink-400 mb-3" />
+              <span className="font-display text-lg text-ink-700">Drop your resume PDF here</span>
+              <span className="text-xs text-ink-500 mt-1">or click to browse · PDF only · max 10 MB</span>
+            </>
+          )}
+        </label>
+
+        {uploadError && (
+          <div className="mt-3 p-3 bg-rose-50 border border-rose-200 rounded text-sm">
+            <div className="flex items-center gap-2 text-rose-900 font-medium">
+              <XCircle className="w-4 h-4" /> Parse failed
+            </div>
+            <div className="mt-1 text-rose-800 text-xs font-mono">{uploadError}</div>
+          </div>
+        )}
+      </div>
+
+      {/* Auto-filled fields (editable) */}
+      <div className="mt-8 space-y-5">
+        {parsed && (
+          <div className="flex items-center gap-2 mb-2">
+            <Sparkles className="w-4 h-4 text-accent" />
+            <span className="text-xs font-mono text-accent tracking-wider uppercase">
+              Auto-filled from your resume · edit anything below
+            </span>
+          </div>
+        )}
+
         <div className="grid grid-cols-2 gap-3">
           <Field label="First name">
             <input value={applicant.first_name} onChange={(e) => setApplicant({ ...applicant, first_name: e.target.value })} className="form-input" />
@@ -465,12 +565,27 @@ function StepReview({ applicant, setApplicant, onContinue }) {
           <input type="url" value={applicant.linkedin || ''} onChange={(e) => setApplicant({ ...applicant, linkedin: e.target.value })} className="form-input" />
         </Field>
 
-        <Field label="Resume PDF — absolute local path" hint="Where the agent reads the file from on this machine.">
-          <input type="text" value={applicant.resume_path} onChange={(e) => setApplicant({ ...applicant, resume_path: e.target.value })} placeholder="/Users/you/resume.pdf" className="form-input font-mono text-xs" />
+        <Field label="GitHub URL">
+          <input type="url" value={applicant.github || ''} onChange={(e) => setApplicant({ ...applicant, github: e.target.value })} className="form-input" />
         </Field>
 
-        <Field label="Resume text" hint="Paste the full text content of your resume. Gemini reads this when answering 'Why this company?' style questions.">
-          <textarea value={applicant.resume_text} onChange={(e) => setApplicant({ ...applicant, resume_text: e.target.value })} rows={6} className="form-input font-mono text-xs leading-relaxed" />
+        <Field label="Portfolio / website">
+          <input type="url" value={applicant.portfolio || ''} onChange={(e) => setApplicant({ ...applicant, portfolio: e.target.value })} className="form-input" />
+        </Field>
+
+        {applicant.resume_path && (
+          <Field label="Resume PDF path" hint="Saved to your machine — the agent reads this file when uploading to forms.">
+            <input type="text" value={applicant.resume_path} readOnly className="form-input font-mono text-xs bg-ink-100 cursor-default" />
+          </Field>
+        )}
+
+        <Field label="Resume text" hint="What Gemini reads when answering 'Why this company?' questions. Auto-extracted from your PDF.">
+          <textarea
+            value={applicant.resume_text}
+            onChange={(e) => setApplicant({ ...applicant, resume_text: e.target.value })}
+            rows={6}
+            className="form-input font-mono text-xs leading-relaxed"
+          />
         </Field>
       </div>
 
@@ -863,14 +978,17 @@ export default function App() {
     setApplying(true)
     setApplyError(null)
     try {
+      // Clean the applicant: empty strings → null for optional fields
+      // so Pydantic doesn't choke on e.g. github="" as an invalid URL
+      const cleanApplicant = { ...applicant }
+      const optionalFields = ['phone', 'location', 'linkedin', 'github', 'portfolio', 'work_auth', 'preferred_pronouns']
+      for (const f of optionalFields) {
+        if (!cleanApplicant[f]) cleanApplicant[f] = null
+      }
+
       const result = await api.batch({
         jobUrls: selectedJobs,
-        applicant: {
-          ...applicant,
-          // Stub-compatible: send empty strings for optional fields rather than undefined
-          phone: applicant.phone || '',
-          location: applicant.location || '',
-        },
+        applicant: cleanApplicant,
         options: {
           auto_submit: autoSubmit,
           headless,
